@@ -1,0 +1,20 @@
+ // SPDX-License-Identifier: MIT
+ pragma solidity ^0.8.7;
+
+//Converting an incoming payment value from wei to ether and gwei
+    
+    contract EtherValueConverter{
+        function getEtherValue() external payable returns (uint256, uint256, uint256) {
+            uint256 weiValue = msg.value;
+            uint256 etherValue = weiToEther(weiValue);
+            uint256 gweiValue = weiToGwei(weiValue);
+
+            return (weiValue, etherValue, gweiValue); 
+        }
+        function weiToEther (uint256 weiAmount) internal pure returns (uint256){
+            return weiAmount / 1 ether;
+        }
+         function weiToGwei (uint256 weiAmount) internal pure returns (uint256){
+            return weiAmount / 1 gwei;
+        }
+    }
